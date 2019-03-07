@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars.</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <h3>Latest Mars News</h3>
+    <h4>{{ mars.news_title }}</h4>
+    <p>{{ mars.news_p }}</p>
+    <br>
+    <h3>Featured Mars Image</h3>
+
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-8">
+                  <div class="box">
+                 <img src=" {{mars.featured_image_url}} " alt="featured image"/>
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="box_1">
+                    <h4>Current Weather On Mars</h4>
+                    <p>{{ mars.mars_weather }}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+                
+    <h3 class="center">Mars Hemispheres</h3>
+
+    <div class="container">
+        <div class="row">
+            {% for image in mars.hemisphere_image_urls %}
+
+            <div class="col-sm-6">
+                <a target=" blank" href=" {{ image.img_url }} ">
+                <img class="image" src=" {{ image.img_url }} " alt="hemisphere image"/>
+                <h4>{{ image.title }}</h4>
+            </div>
+
+            {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
